@@ -66,7 +66,7 @@ RSpec.describe AthletesController, type: :controller do
     context "with invalid params" do
       it "renders a response with 422 status (i.e. to display the 'new' template)" do
         post :create, params: { athlete: invalid_attributes }, session: valid_session
-        expect(response).to have_http_status(:unprocessable_entity)
+        expect(response).to have_http_status(:unprocessable_content)
       end
     end
   end
@@ -98,7 +98,7 @@ RSpec.describe AthletesController, type: :controller do
       it "renders a response with 422 status (i.e. to display the 'edit' template)" do
         athlete = athletes(:john_doe)
         put :update, params: { id: athlete.to_param, athlete: invalid_attributes }, session: valid_session
-        expect(response).to have_http_status(:unprocessable_entity)
+        expect(response).to have_http_status(:unprocessable_content)
       end
     end
   end
