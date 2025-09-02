@@ -1,0 +1,23 @@
+food:
+  type: Food
+  description: Grocery shopping
+  unit_value: 85.50
+  date: 2025-08-15
+
+transportation:
+  type: Transportation
+  description: Gas for car
+  unit_value: 45.00
+  date: 2025-08-20
+
+entertainment:
+  type: Entertainment
+  description: Movie tickets
+  unit_value: 24.00
+  date: 2025-08-10
+
+utilities:
+  type: Utilities
+  description: Electricity bill
+  unit_value: 120.75
+  date: 2025-08-25
