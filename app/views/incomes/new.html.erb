@@ -1,0 +1,11 @@
+<% content_for :title, "New income" %>
+
+<h1>New income</h1>
+
+<%= render "form", income: @income %>
+
+<br>
+
+<div>
+  <%= link_to "Back to incomes", incomes_path %>
+</div>
