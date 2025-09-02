@@ -1,0 +1,15 @@
+weekend_game:
+  date: 2025-08-30
+  location: Central Park
+
+indoor_match:
+  date: 2025-09-05
+  location: Sports Complex
+
+beach_game:
+  date: 2025-09-12
+  location: Beach Volleyball Court
+
+night_match:
+  date: 2025-09-20
+  location: Indoor Arena

@@ -66,7 +66,7 @@ RSpec.describe ExpensesController, type: :controller do
     context "with invalid params" do
       it "renders a response with 422 status (i.e. to display the 'new' template)" do
         post :create, params: { expense: invalid_attributes }, session: valid_session
-        expect(response).to have_http_status(:unprocessable_entity)
+        expect(response).to have_http_status(:unprocessable_content)
       end
     end
   end
@@ -99,7 +99,7 @@ RSpec.describe ExpensesController, type: :controller do
       it "renders a response with 422 status (i.e. to display the 'edit' template)" do
         expense = expenses(:food)
         put :update, params: { id: expense.to_param, expense: invalid_attributes }, session: valid_session
-        expect(response).to have_http_status(:unprocessable_entity)
+        expect(response).to have_http_status(:unprocessable_content)
       end
     end
   end
