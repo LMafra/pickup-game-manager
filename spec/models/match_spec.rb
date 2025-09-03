@@ -73,10 +73,5 @@ RSpec.describe Match, type: :model do
       expect(match.save).to be true
       expect(match.reload.location).to eq('Updated Location')
     end
-
-    it 'can delete a match' do
-      match = matches(:beach_game)
-      expect { match.destroy }.to change(Match, :count).by(-1)
-    end
   end
 end

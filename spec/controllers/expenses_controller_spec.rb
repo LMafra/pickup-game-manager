@@ -3,20 +3,14 @@ require 'rails_helper'
 RSpec.describe ExpensesController, type: :controller do
   fixtures :expenses
 
-  # This should return the minimal set of attributes required to create a valid
-  # Expense. As you add validations to Expense, be sure to
-  # adjust the attributes here as well.
   let(:valid_attributes) {
-    { type: 'Food', description: 'Test expense', unit_value: 10.0, date: Date.today }
+    { type: 'Food', description: 'Test expense', unit_value: 50.0, date: Date.today }
   }
 
   let(:invalid_attributes) {
     { type: '', description: '', unit_value: nil, date: nil }
   }
 
-  # This should return the minimal set of values that should be in the session
-  # in order to pass any filters (e.g. authentication) defined in
-  # ExpensesController. Be sure to keep this updated too.
   let(:valid_session) { {} }
 
   describe "GET #index" do

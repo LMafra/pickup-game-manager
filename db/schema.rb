@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_09_02_183854) do
+ActiveRecord::Schema[8.0].define(version: 2025_09_02_190635) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -45,4 +45,20 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_02_183854) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "payments", force: :cascade do |t|
+    t.date "date"
+    t.string "status"
+    t.bigint "athlete_id", null: false
+    t.bigint "match_id", null: false
+    t.text "description"
+    t.float "amount"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["athlete_id"], name: "index_payments_on_athlete_id"
+    t.index ["match_id"], name: "index_payments_on_match_id"
+  end
+
+  add_foreign_key "payments", "athletes"
+  add_foreign_key "payments", "matches"
 end
