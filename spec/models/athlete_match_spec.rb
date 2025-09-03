@@ -13,7 +13,7 @@ RSpec.describe AthleteMatch, type: :model do
     it 'belongs to a match' do
       athlete_match = athlete_matches(:john_weekend)
       expect(athlete_match.match).to be_a(Match)
-      expect(athlete_match.match.location).to eq('Central Park')
+      expect(athlete_match.match.location).to eq('COPM')
     end
   end
 
@@ -30,22 +30,22 @@ RSpec.describe AthleteMatch, type: :model do
     end
 
     it 'has unique athlete-match combinations' do
-      combinations = AthleteMatch.all.map { |am| [ am.athlete_id, am.match_id ] }
+      combinations = AthleteMatch.pluck(:athlete_id, :match_id)
       expect(combinations.uniq.length).to eq(8)
     end
   end
 
   describe 'relationships' do
     it 'can access athlete details through athlete_match' do
-      athlete_match = athlete_matches(:jane_indoor)
-      expect(athlete_match.athlete.name).to eq('Jane Smith')
-      expect(athlete_match.athlete.phone).to eq(9876543210)
+      athlete_match = athlete_matches(:john_weekend)
+      expect(athlete_match.athlete.name).to eq('John Doe')
+      expect(athlete_match.athlete.phone).to eq(1234567890)
     end
 
     it 'can access match details through athlete_match' do
-      athlete_match = athlete_matches(:mike_beach)
-      expect(athlete_match.match.date).to eq(Date.parse('2025-09-12'))
-      expect(athlete_match.match.location).to eq('Beach Volleyball Court')
+      athlete_match = athlete_matches(:john_weekend)
+      expect(athlete_match.match.date).to eq(Date.parse('2025-08-30'))
+      expect(athlete_match.match.location).to eq('COPM')
     end
 
     it 'can find athlete_matches by athlete' do
@@ -54,7 +54,7 @@ RSpec.describe AthleteMatch, type: :model do
     end
 
     it 'can find athlete_matches by match' do
-      weekend_participations = AthleteMatch.joins(:match).where(matches: { location: 'Central Park' })
+      weekend_participations = AthleteMatch.joins(:match).where(matches: { date: Date.parse('2025-08-30') })
       expect(weekend_participations.count).to eq(2)
     end
   end
@@ -80,7 +80,7 @@ RSpec.describe AthleteMatch, type: :model do
       athlete_match.match = new_match
 
       expect(athlete_match.save).to be true
-      expect(athlete_match.reload.match.location).to eq('Beach Volleyball Court')
+      expect(athlete_match.reload.match.date).to eq(Date.parse('2025-09-12'))
     end
 
     it 'can delete an athlete_match' do
@@ -91,14 +91,18 @@ RSpec.describe AthleteMatch, type: :model do
 
   describe 'data integrity' do
     it 'prevents duplicate athlete-match combinations' do
-      existing = athlete_matches(:john_weekend)
-      duplicate = AthleteMatch.new(
-        athlete: existing.athlete,
-        match: existing.match
-      )
+      athlete = athletes(:mike_johnson)
+      match = matches(:weekend_game)
 
-      expect(duplicate).not_to be_valid
-      expect(duplicate.errors[:athlete_id]).to include('has already been taken')
+      # First one should be valid
+      first = AthleteMatch.new(athlete: athlete, match: match)
+      expect(first).to be_valid
+      expect(first.save).to be true
+
+      # Second one with same combination should be invalid
+      second = AthleteMatch.new(athlete: athlete, match: match)
+      expect(second).not_to be_valid
+      expect(second.errors[:athlete_id]).to include('has already been taken')
     end
 
     it 'requires both athlete and match' do
@@ -111,15 +115,15 @@ RSpec.describe AthleteMatch, type: :model do
 
   describe 'participation scenarios' do
     it 'shows athletes participating in multiple matches' do
-      john_participations = AthleteMatch.where(athlete: athletes(:john_doe))
+      john_participations = AthleteMatch.joins(:athlete).where(athletes: { name: 'John Doe' })
       expect(john_participations.count).to eq(2)
-      expect(john_participations.map(&:match).map(&:location)).to include('Central Park', 'Sports Complex')
+      expect(john_participations.map(&:match).map(&:location)).to all(eq('COPM'))
     end
 
     it 'shows matches with multiple athletes' do
-      weekend_participants = AthleteMatch.where(match: matches(:weekend_game))
-      expect(weekend_participants.count).to eq(2)
-      expect(weekend_participants.map(&:athlete).map(&:name)).to include('John Doe', 'Sarah Wilson')
+      weekend_participations = AthleteMatch.joins(:match).where(matches: { date: Date.parse('2025-08-30') })
+      expect(weekend_participations.count).to eq(2)
+      expect(weekend_participations.map(&:athlete).map(&:name)).to include('John Doe', 'Sarah Wilson')
     end
   end
 end

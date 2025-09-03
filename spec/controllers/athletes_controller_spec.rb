@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe AthletesController, type: :controller do
-  fixtures :athletes
+  fixtures :athletes, :payments, :matches
 
   let(:valid_attributes) {
     { name: 'Test Athlete', phone: 1234567890, date_of_birth: Date.today }

@@ -1,14 +1,14 @@
 require 'rails_helper'
 
 RSpec.describe ExpensesController, type: :controller do
-  fixtures :expenses
+  fixtures :expenses, :incomes, :matches
 
   let(:valid_attributes) {
-    { type: 'Food', description: 'Test expense', unit_value: 50.0, date: Date.today }
+    { type: 'Basic', description: 'Test expense', unit_value: 100.0, quantity: 1, date: Date.today }
   }
 
   let(:invalid_attributes) {
-    { type: '', description: '', unit_value: nil, date: nil }
+    { type: '', description: '', unit_value: nil, quantity: nil, date: nil }
   }
 
   let(:valid_session) { {} }
@@ -68,16 +68,17 @@ RSpec.describe ExpensesController, type: :controller do
   describe "PUT #update" do
     context "with valid params" do
       let(:new_attributes) {
-        { type: 'Transportation', description: 'Updated expense', unit_value: 25.0, date: Date.today - 1 }
+        { type: 'Intermediary', description: 'Updated expense', unit_value: 200.0, quantity: 2, date: Date.today - 1 }
       }
 
       it "updates the requested expense" do
         expense = expenses(:food)
         put :update, params: { id: expense.to_param, expense: new_attributes }, session: valid_session
         expense.reload
-        expect(expense.type).to eq('Transportation')
+        expect(expense.type).to eq('Intermediary')
         expect(expense.description).to eq('Updated expense')
-        expect(expense.unit_value).to eq(25.0)
+        expect(expense.unit_value).to eq(200.0)
+        expect(expense.quantity).to eq(2)
         expect(expense.date).to eq(Date.today - 1)
       end
 

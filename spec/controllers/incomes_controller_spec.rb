@@ -1,10 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe IncomesController, type: :controller do
-  fixtures :incomes
+  fixtures :incomes, :expenses, :matches
 
   let(:valid_attributes) {
-    { type: 'Salary', unit_value: 5000.0, date: Date.today }
+    { type: 'daily', unit_value: 20.0, date: Date.today }
   }
 
   let(:invalid_attributes) {
@@ -68,15 +68,15 @@ RSpec.describe IncomesController, type: :controller do
   describe "PUT #update" do
     context "with valid params" do
       let(:new_attributes) {
-        { type: 'Bonus', unit_value: 1500.0, date: Date.today - 1 }
+        { type: 'monthly', unit_value: 50.0, date: Date.today - 1 }
       }
 
       it "updates the requested income" do
         income = Income.create! valid_attributes
         put :update, params: { id: income.to_param, income: new_attributes }, session: valid_session
         income.reload
-        expect(income.type).to eq('Bonus')
-        expect(income.unit_value).to eq(1500.0)
+        expect(income.type).to eq('monthly')
+        expect(income.unit_value).to eq(50.0)
         expect(income.date).to eq(Date.today - 1)
       end
 

@@ -10,7 +10,7 @@ RSpec.describe PaymentsController, type: :controller do
       athlete_id: athletes(:john_doe).id,
       match_id: matches(:weekend_game).id,
       description: 'Test payment',
-      amount: 25.0
+      amount: 15.0
     }
   }
 
@@ -85,7 +85,7 @@ RSpec.describe PaymentsController, type: :controller do
         {
           date: Date.today + 1,
           status: 'paid',
-          amount: 30.0,
+          amount: 20.0,
           description: 'Updated payment'
         }
       }
@@ -96,7 +96,7 @@ RSpec.describe PaymentsController, type: :controller do
         payment.reload
         expect(payment.date).to eq(Date.today + 1)
         expect(payment.status).to eq('paid')
-        expect(payment.amount).to eq(30.0)
+        expect(payment.amount).to eq(20.0)
         expect(payment.description).to eq('Updated payment')
       end
 

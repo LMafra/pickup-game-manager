@@ -1,11 +1,11 @@
 salary:
-  type: Salary
-  unit_value: 2500.0
+  type: daily
+  unit_value: 15.0
   date: 2025-08-15
 
 bonus:
-  type: Bonus
-  unit_value: 500.5
+  type: monthly
+  unit_value: 35.0
   date: 2025-08-20
 
 freelance:
