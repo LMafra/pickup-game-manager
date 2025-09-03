@@ -1,15 +1,15 @@
 weekend_game:
   date: 2025-08-30
-  location: Central Park
+  location: COPM
 
 indoor_match:
   date: 2025-09-05
-  location: Sports Complex
+  location: COPM
 
 beach_game:
   date: 2025-09-12
-  location: Beach Volleyball Court
+  location: COPM
 
 night_match:
-  date: 2025-09-20
-  location: Indoor Arena
+  date: 2025-09-18
+  location: COPM

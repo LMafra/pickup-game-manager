@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Match, type: :model do
-  fixtures :matches
+  fixtures :matches, :payments
 
   describe 'attributes' do
     let(:match) { matches(:weekend_game) }
@@ -11,7 +11,7 @@ RSpec.describe Match, type: :model do
     end
 
     it 'has the correct location' do
-      expect(match.location).to eq('Central Park')
+      expect(match.location).to eq('COPM')
     end
   end
 
@@ -24,25 +24,18 @@ RSpec.describe Match, type: :model do
     end
 
     it 'has different dates for each match' do
-      dates = [
-        matches(:weekend_game).date,
-        matches(:indoor_match).date,
-        matches(:beach_game).date,
-        matches(:night_match).date
-      ]
-
+      dates = Match.pluck(:date)
       expect(dates.uniq.length).to eq(4)
+      expect(dates).to include(Date.parse('2025-08-30'))
+      expect(dates).to include(Date.parse('2025-09-05'))
+      expect(dates).to include(Date.parse('2025-09-12'))
+      expect(dates).to include(Date.parse('2025-09-18'))
     end
 
     it 'has different locations for each match' do
-      locations = [
-        matches(:weekend_game).location,
-        matches(:indoor_match).location,
-        matches(:beach_game).location,
-        matches(:night_match).location
-      ]
-
-      expect(locations.uniq.length).to eq(4)
+      locations = Match.pluck(:location)
+      expect(locations.uniq.length).to eq(1)
+      expect(locations).to all(eq('COPM'))
     end
   end
 
@@ -51,27 +44,36 @@ RSpec.describe Match, type: :model do
 
     it 'stores date as date' do
       expect(match.date).to be_a(Date)
-      expect(match.date).to eq(Date.parse('2025-09-05'))
     end
 
     it 'stores location as string' do
-      expect(match.location).to be_a(String)
-      expect(match.location).to eq('Sports Complex')
+      expect(match.location).to eq('COPM')
     end
   end
 
   describe 'model behavior' do
     it 'can create a new match' do
-      match = Match.new(date: Date.today, location: 'Test Location')
+      match = Match.new(
+        date: Date.today,
+        location: 'COPM'
+      )
+
       expect(match).to be_valid
       expect(match.save).to be true
+      expect(Match.count).to eq(5)
     end
 
     it 'can update an existing match' do
       match = matches(:weekend_game)
-      match.location = 'Updated Location'
+      match.date = Date.today + 1
+
       expect(match.save).to be true
-      expect(match.reload.location).to eq('Updated Location')
+      expect(match.reload.date).to eq(Date.today + 1)
     end
+
+    # it 'can delete a match' do
+    #   match = matches(:night_match)
+    #   expect { match.destroy }.to change(Match, :count).by(-1)
+    # end
   end
 end

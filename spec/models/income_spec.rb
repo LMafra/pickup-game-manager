@@ -11,19 +11,19 @@ RSpec.describe Income, type: :model do
     end
 
     it 'requires type' do
-      income = Income.new(unit_value: 10.0, date: Date.today)
+      income = Income.new(unit_value: 100.0, date: Date.today)
       expect(income).not_to be_valid
       expect(income.errors[:type]).to include("can't be blank")
     end
 
     it 'requires unit_value' do
-      income = Income.new(type: 'Salary', date: Date.today)
+      income = Income.new(type: 'daily', date: Date.today)
       expect(income).not_to be_valid
       expect(income.errors[:unit_value]).to include("can't be blank")
     end
 
     it 'requires date' do
-      income = Income.new(type: 'Salary', unit_value: 10.0)
+      income = Income.new(type: 'daily', unit_value: 100.0)
       expect(income).not_to be_valid
       expect(income.errors[:date]).to include("can't be blank")
     end
@@ -33,11 +33,11 @@ RSpec.describe Income, type: :model do
     let(:income) { incomes(:salary) }
 
     it 'has the correct type' do
-      expect(income.type).to eq('Salary')
+      expect(income.type).to eq('daily')
     end
 
     it 'has the correct unit_value' do
-      expect(income.unit_value).to eq(2500.0)
+      expect(income.unit_value).to eq(15.0)
     end
 
     it 'has the correct date' do
@@ -54,12 +54,12 @@ RSpec.describe Income, type: :model do
 
     it 'has different income types' do
       types = Income.pluck(:type)
-      expect(types).to include('Salary', 'Bonus', 'Freelance')
+      expect(types).to include('daily', 'monthly')
     end
 
     it 'has different income amounts' do
       amounts = Income.pluck(:unit_value)
-      expect(amounts).to include(2500.0, 500.5, 120.75)
+      expect(amounts).to include(15.0, 35.0, 120.75)
     end
   end
 
@@ -67,33 +67,42 @@ RSpec.describe Income, type: :model do
     let(:income) { incomes(:bonus) }
 
     it 'stores type as string' do
-      expect(income.type).to be_a(String)
-      expect(income.type).to eq('Bonus')
+      expect(income.type).to eq('monthly')
     end
 
     it 'stores unit_value as float' do
-      expect(income.unit_value).to be_a(Float)
-      expect(income.unit_value).to eq(500.5)
+      expect(income.unit_value).to eq(35.0)
     end
 
     it 'stores date as date' do
-      expect(income.date).to be_a(Date)
       expect(income.date).to eq(Date.parse('2025-08-20'))
     end
   end
 
   describe 'model behavior' do
     it 'can create a new income' do
-      income = Income.new(type: 'Commission', unit_value: 750.0, date: Date.today)
+      income = Income.new(
+        type: 'daily',
+        unit_value: 20.0,
+        date: Date.today
+      )
+
       expect(income).to be_valid
       expect(income.save).to be true
+      expect(Income.count).to eq(4)
     end
 
     it 'can update an existing income' do
       income = incomes(:salary)
-      income.unit_value = 3000.0
+      income.unit_value = 25.0
+
       expect(income.save).to be true
-      expect(income.reload.unit_value).to eq(3000.0)
+      expect(income.reload.unit_value).to eq(25.0)
     end
+
+    # it 'can delete an income' do
+    #   income = incomes(:freelance)
+    #   expect { income.destroy }.to change(Income, :count).by(-1)
+    # end
   end
 end

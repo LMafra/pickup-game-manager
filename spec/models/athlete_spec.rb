@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Athlete, type: :model do
-  fixtures :athletes
+  fixtures :athletes, :payments
 
   describe 'validations' do
     it 'is valid with valid attributes (from fixtures)' do

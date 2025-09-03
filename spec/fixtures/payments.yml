@@ -3,37 +3,29 @@ weekend_payment:
   status: paid
   athlete: john_doe
   match: weekend_game
-  description: Weekend game payment
-  amount: 25.0
+  description: First week game payment
+  amount: 15.0
 
 indoor_payment:
   date: 2025-09-05
-  status: pending
+  status: paid
   athlete: jane_smith
   match: indoor_match
-  description: Indoor match fee
-  amount: 30.0
+  description: Second week game payment
+  amount: 15.0
 
 beach_payment:
   date: 2025-09-12
-  status: paid
+  status: pending
   athlete: mike_johnson
   match: beach_game
-  description: Beach volleyball payment
-  amount: 20.0
+  description: Third week game payment
+  amount: 15.0
 
 night_payment:
-  date: 2025-09-20
-  status: cancelled
+  date: 2025-09-18
+  status: paid
   athlete: sarah_wilson
   match: night_match
-  description: Night match registration
-  amount: 35.0
-
-late_payment:
-  date: 2025-09-25
-  status: overdue
-  athlete: john_doe
-  match: weekend_game
-  description: Late payment for weekend game
-  amount: 25.0
+  description: Fourth week game payment
+  amount: 15.0

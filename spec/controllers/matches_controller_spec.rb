@@ -1,10 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe MatchesController, type: :controller do
-  fixtures :matches
+  fixtures :matches, :payments, :athletes
 
   let(:valid_attributes) {
-    { date: Date.today, location: 'Test Location' }
+    { date: Date.today, location: 'COPM' }
   }
 
   let(:invalid_attributes) {
@@ -68,7 +68,7 @@ RSpec.describe MatchesController, type: :controller do
   describe "PUT #update" do
     context "with valid params" do
       let(:new_attributes) {
-        { date: Date.today + 1, location: 'Updated Location' }
+        { date: Date.today + 1, location: 'COPM' }
       }
 
       it "updates the requested match" do
@@ -76,7 +76,7 @@ RSpec.describe MatchesController, type: :controller do
         put :update, params: { id: match.to_param, match: new_attributes }, session: valid_session
         match.reload
         expect(match.date).to eq(Date.today + 1)
-        expect(match.location).to eq('Updated Location')
+        expect(match.location).to eq('COPM')
       end
 
       it "redirects to the match" do
