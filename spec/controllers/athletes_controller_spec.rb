@@ -3,9 +3,6 @@ require 'rails_helper'
 RSpec.describe AthletesController, type: :controller do
   fixtures :athletes
 
-  # This should return the minimal set of attributes required to create a valid
-  # Athlete. As you add validations to Athlete, be sure to
-  # adjust the attributes here as well.
   let(:valid_attributes) {
     { name: 'Test Athlete', phone: 1234567890, date_of_birth: Date.today }
   }
@@ -14,9 +11,6 @@ RSpec.describe AthletesController, type: :controller do
     { name: '', phone: nil, date_of_birth: nil }
   }
 
-  # This should return the minimal set of values that should be in the session
-  # in order to pass any filters (e.g. authentication) defined in
-  # AthletesController. Be sure to keep this updated too.
   let(:valid_session) { {} }
 
   describe "GET #index" do
@@ -105,14 +99,14 @@ RSpec.describe AthletesController, type: :controller do
 
   describe "DELETE #destroy" do
     it "destroys the requested athlete" do
-      athlete = athletes(:john_doe)
+      athlete = Athlete.create!(name: 'Test Athlete', phone: 1112223333, date_of_birth: Date.today)
       expect {
         delete :destroy, params: { id: athlete.to_param }, session: valid_session
       }.to change(Athlete, :count).by(-1)
     end
 
     it "redirects to the athletes list" do
-      athlete = athletes(:john_doe)
+      athlete = Athlete.create!(name: 'Test Athlete', phone: 1112223333, date_of_birth: Date.today)
       delete :destroy, params: { id: athlete.to_param }, session: valid_session
       expect(response).to have_http_status(:see_other)
       expect(response).to redirect_to(athletes_path)

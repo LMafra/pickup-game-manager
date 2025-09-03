@@ -3,9 +3,6 @@ require 'rails_helper'
 RSpec.describe MatchesController, type: :controller do
   fixtures :matches
 
-  # This should return the minimal set of attributes required to create a valid
-  # Match. As you add validations to Match, be sure to
-  # adjust the attributes here as well.
   let(:valid_attributes) {
     { date: Date.today, location: 'Test Location' }
   }
@@ -14,9 +11,6 @@ RSpec.describe MatchesController, type: :controller do
     { date: nil, location: '' }
   }
 
-  # This should return the minimal set of values that should be in the session
-  # in order to pass any filters (e.g. authentication) defined in
-  # MatchesController. Be sure to keep this updated too.
   let(:valid_session) { {} }
 
   describe "GET #index" do
@@ -104,14 +98,14 @@ RSpec.describe MatchesController, type: :controller do
 
   describe "DELETE #destroy" do
     it "destroys the requested match" do
-      match = matches(:weekend_game)
+      match = Match.create!(date: Date.today, location: 'Test Location')
       expect {
         delete :destroy, params: { id: match.to_param }, session: valid_session
       }.to change(Match, :count).by(-1)
     end
 
     it "redirects to the matches list" do
-      match = matches(:weekend_game)
+      match = Match.create!(date: Date.today, location: 'Test Location')
       delete :destroy, params: { id: match.to_param }, session: valid_session
       expect(response).to have_http_status(:see_other)
       expect(response).to redirect_to(matches_path)

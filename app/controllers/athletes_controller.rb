@@ -1,25 +1,20 @@
 class AthletesController < ApplicationController
   before_action :set_athlete, only: %i[ show edit update destroy ]
 
-  # GET /athletes or /athletes.json
   def index
     @athletes = Athlete.all
   end
 
-  # GET /athletes/1 or /athletes/1.json
   def show
   end
 
-  # GET /athletes/new
   def new
     @athlete = Athlete.new
   end
 
-  # GET /athletes/1/edit
   def edit
   end
 
-  # POST /athletes or /athletes.json
   def create
     @athlete = Athlete.new(athlete_params)
 
@@ -34,7 +29,6 @@ class AthletesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /athletes/1 or /athletes/1.json
   def update
     respond_to do |format|
       if @athlete.update(athlete_params)
@@ -47,7 +41,6 @@ class AthletesController < ApplicationController
     end
   end
 
-  # DELETE /athletes/1 or /athletes/1.json
   def destroy
     @athlete.destroy!
 
@@ -58,12 +51,10 @@ class AthletesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_athlete
       @athlete = Athlete.find(params[:id])
     end
 
-    # Only allow a list of trusted parameters through.
     def athlete_params
       params.require(:athlete).permit(:name, :phone, :date_of_birth)
     end
