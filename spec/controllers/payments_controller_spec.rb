@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe PaymentsController, type: :controller do
-  fixtures :payments, :athletes, :matches
+  fixtures :payments, :athletes, :matches, :transaction_categories
 
   let(:valid_attributes) {
     {
@@ -9,6 +9,7 @@ RSpec.describe PaymentsController, type: :controller do
       status: 'pending',
       athlete_id: athletes(:john_doe).id,
       match_id: matches(:weekend_game).id,
+      transaction_category_id: transaction_categories(:daily_transaction).id,
       description: 'Test payment',
       amount: 15.0
     }

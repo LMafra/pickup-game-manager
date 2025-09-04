@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_09_03_122627) do
+ActiveRecord::Schema[8.0].define(version: 2025_09_03_174442) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -44,9 +44,10 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_03_122627) do
   create_table "incomes", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "type"
     t.float "unit_value"
     t.date "date"
+    t.bigint "transaction_category_id", null: false
+    t.index ["transaction_category_id"], name: "index_incomes_on_transaction_category_id"
   end
 
   create_table "matches", force: :cascade do |t|
@@ -65,12 +66,24 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_03_122627) do
     t.float "amount"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "transaction_category_id", null: false
     t.index ["athlete_id"], name: "index_payments_on_athlete_id"
     t.index ["match_id"], name: "index_payments_on_match_id"
+    t.index ["transaction_category_id"], name: "index_payments_on_transaction_category_id"
+  end
+
+  create_table "transaction_categories", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "name", null: false
+    t.text "description"
+    t.index ["name"], name: "index_transaction_categories_on_name", unique: true
   end
 
   add_foreign_key "athlete_matches", "athletes"
   add_foreign_key "athlete_matches", "matches"
+  add_foreign_key "incomes", "transaction_categories"
   add_foreign_key "payments", "athletes"
   add_foreign_key "payments", "matches"
+  add_foreign_key "payments", "transaction_categories"
 end

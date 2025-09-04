@@ -1,39 +1,38 @@
 require 'rails_helper'
 
 RSpec.describe Income, type: :model do
-  fixtures :incomes
+  fixtures :incomes, :transaction_categories
 
   describe 'validations' do
     it 'is valid with valid attributes (from fixtures)' do
-      expect(incomes(:salary)).to be_valid
-      expect(incomes(:bonus)).to be_valid
-      expect(incomes(:freelance)).to be_valid
+      expect(incomes(:daily)).to be_valid
+      expect(incomes(:monthly)).to be_valid
     end
 
-    it 'requires type' do
+    it 'requires transaction_category' do
       income = Income.new(unit_value: 100.0, date: Date.today)
       expect(income).not_to be_valid
-      expect(income.errors[:type]).to include("can't be blank")
+      expect(income.errors[:transaction_category]).to include("must exist")
     end
 
     it 'requires unit_value' do
-      income = Income.new(type: 'daily', date: Date.today)
+      income = Income.new(transaction_category: transaction_categories(:daily_transaction), date: Date.today)
       expect(income).not_to be_valid
       expect(income.errors[:unit_value]).to include("can't be blank")
     end
 
     it 'requires date' do
-      income = Income.new(type: 'daily', unit_value: 100.0)
+      income = Income.new(transaction_category: transaction_categories(:daily_transaction), unit_value: 100.0)
       expect(income).not_to be_valid
       expect(income.errors[:date]).to include("can't be blank")
     end
   end
 
   describe 'attributes' do
-    let(:income) { incomes(:salary) }
+    let(:income) { incomes(:daily) }
 
-    it 'has the correct type' do
-      expect(income.type).to eq('daily')
+    it 'has the correct transaction_category' do
+      expect(income.transaction_category).to eq(transaction_categories(:daily_transaction))
     end
 
     it 'has the correct unit_value' do
@@ -47,27 +46,26 @@ RSpec.describe Income, type: :model do
 
   describe 'fixtures' do
     it 'loads all income fixtures correctly' do
-      expect(incomes(:salary)).to be_valid
-      expect(incomes(:bonus)).to be_valid
-      expect(incomes(:freelance)).to be_valid
+      expect(incomes(:daily)).to be_valid
+      expect(incomes(:monthly)).to be_valid
     end
 
-    it 'has different income types' do
-      types = Income.pluck(:type)
-      expect(types).to include('daily', 'monthly')
+    it 'has different transaction categories' do
+      categories = Income.joins(:transaction_category).pluck('transaction_categories.name')
+      expect(categories).to include('daily', 'monthly')
     end
 
     it 'has different income amounts' do
       amounts = Income.pluck(:unit_value)
-      expect(amounts).to include(15.0, 35.0, 120.75)
+      expect(amounts).to include(15.0, 35.0)
     end
   end
 
   describe 'data types' do
-    let(:income) { incomes(:bonus) }
+    let(:income) { incomes(:monthly) }
 
-    it 'stores type as string' do
-      expect(income.type).to eq('monthly')
+    it 'stores transaction_category as association' do
+      expect(income.transaction_category.name).to eq('monthly')
     end
 
     it 'stores unit_value as float' do
@@ -82,27 +80,22 @@ RSpec.describe Income, type: :model do
   describe 'model behavior' do
     it 'can create a new income' do
       income = Income.new(
-        type: 'daily',
+        transaction_category: transaction_categories(:daily_transaction),
         unit_value: 20.0,
         date: Date.today
       )
 
       expect(income).to be_valid
       expect(income.save).to be true
-      expect(Income.count).to eq(4)
+      expect(Income.count).to eq(3)
     end
 
     it 'can update an existing income' do
-      income = incomes(:salary)
+      income = incomes(:daily)
       income.unit_value = 25.0
 
       expect(income.save).to be true
       expect(income.reload.unit_value).to eq(25.0)
     end
-
-    # it 'can delete an income' do
-    #   income = incomes(:freelance)
-    #   expect { income.destroy }.to change(Income, :count).by(-1)
-    # end
   end
 end

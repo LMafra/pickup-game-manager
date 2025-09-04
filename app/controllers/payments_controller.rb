@@ -56,6 +56,6 @@ class PaymentsController < ApplicationController
     end
 
     def payment_params
-      params.require(:payment).permit(:date, :status, :athlete_id, :match_id, :description, :amount)
+      params.require(:payment).permit(:date, :status, :athlete_id, :match_id, :transaction_category_id, :description, :amount)
     end
 end

@@ -83,26 +83,46 @@ matches.each do |key, attributes|
   puts "  ✅ Created match: #{attributes[:location]} on #{attributes[:date]}"
 end
 
+puts "🏷️ Creating transaction categories..."
+transaction_categories = {
+  daily: {
+    name: "Daily",
+    description: "Daily game participation income"
+  },
+  monthly: {
+    name: "Monthly",
+    description: "Monthly subscription income"
+  }
+}
+
+transaction_categories.each do |key, attributes|
+  TransactionCategory.find_or_create_by!(name: attributes[:name]) do |category|
+    category.description = attributes[:description]
+  end
+  puts "  ✅ Created transaction category: #{attributes[:name]}"
+end
+
 puts "💰 Creating incomes..."
 incomes = {
   daily: {
-    type: "daily",
+    transaction_category_name: "Daily",
     unit_value: 15.0,
     date: Date.parse("2025-08-15")
   },
   monthly: {
-    type: "monthly",
+    transaction_category_name: "Monthly",
     unit_value: 35.0,
     date: Date.parse("2025-08-20")
   }
 }
 
 incomes.each do |key, attributes|
-  Income.find_or_create_by!(type: attributes[:type], date: attributes[:date]) do |income|
+  transaction_category = TransactionCategory.find_by!(name: attributes[:transaction_category_name])
+  Income.find_or_create_by!(transaction_category: transaction_category, date: attributes[:date]) do |income|
     income.unit_value = attributes[:unit_value]
     income.date = attributes[:date]
   end
-  puts "  ✅ Created income: #{attributes[:type]} - $#{attributes[:unit_value]}"
+  puts "  ✅ Created income: #{attributes[:transaction_category_name]} - $#{attributes[:unit_value]}"
 end
 
 puts "💸 Creating expenses..."
@@ -179,23 +199,25 @@ end
 
 puts "💳 Creating payments..."
 payments_data = [
-  { athlete_name: "John Doe", match_location: "COPM", amount: 15.0, status: "paid", description: "First week game payment" },
-  { athlete_name: "Jane Smith", match_location: "COPM", amount: 15.0, status: "paid", description: "Second week game payment" },
-  { athlete_name: "Mike Johnson", match_location: "COPM", amount: 15.0, status: "pending", description: "Third week game payment" },
-  { athlete_name: "Sarah Wilson", match_location: "COPM", amount: 15.0, status: "paid", description: "Fourth week game payment" },
-  { athlete_name: "Alex Rodriguez", match_location: "COPM", amount: 15.0, status: "paid", description: "First week game payment" },
-  { athlete_name: "Emma Davis", match_location: "COPM", amount: 15.0, status: "pending", description: "Second week game payment" }
+  { athlete_name: "John Doe", match_location: "COPM", amount: 15.0, status: "paid", description: "First week game payment", transaction_category_name: "Daily" },
+  { athlete_name: "Jane Smith", match_location: "COPM", amount: 15.0, status: "paid", description: "Second week game payment", transaction_category_name: "Daily" },
+  { athlete_name: "Mike Johnson", match_location: "COPM", amount: 15.0, status: "pending", description: "Third week game payment", transaction_category_name: "Daily" },
+  { athlete_name: "Sarah Wilson", match_location: "COPM", amount: 15.0, status: "paid", description: "Fourth week game payment", transaction_category_name: "Daily" },
+  { athlete_name: "Alex Rodriguez", match_location: "COPM", amount: 15.0, status: "paid", description: "First week game payment", transaction_category_name: "Daily" },
+  { athlete_name: "Emma Davis", match_location: "COPM", amount: 15.0, status: "pending", description: "Second week game payment", transaction_category_name: "Daily" }
 ]
 
 payments_data.each do |data|
   athlete = Athlete.find_by!(name: data[:athlete_name])
   match = Match.find_by!(location: data[:match_location])
+  transaction_category = TransactionCategory.find_by!(name: data[:transaction_category_name])
 
   Payment.find_or_create_by!(athlete: athlete, match: match) do |payment|
     payment.amount = data[:amount]
     payment.status = data[:status]
     payment.description = data[:description]
     payment.date = match.date
+    payment.transaction_category = transaction_category
   end
   puts "  ✅ Created payment: #{data[:athlete_name]} - $#{data[:amount]} (#{data[:status]}) for #{data[:match_location]}"
 end
@@ -204,6 +226,7 @@ puts ""
 puts "🎉 Database seeding completed successfully!"
 puts ""
 puts "📊 Summary:"
+puts "  🏷️ Transaction Categories: #{TransactionCategory.count}"
 puts "  👥 Athletes: #{Athlete.count}"
 puts "  🏟️ Matches: #{Match.count}"
 puts "  💰 Incomes: #{Income.count}"

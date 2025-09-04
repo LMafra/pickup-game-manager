@@ -1,14 +1,18 @@
 require 'rails_helper'
 
 RSpec.describe IncomesController, type: :controller do
-  fixtures :incomes, :expenses, :matches
+  fixtures :incomes, :expenses, :matches, :transaction_categories
 
   let(:valid_attributes) {
-    { type: 'daily', unit_value: 20.0, date: Date.today }
+    {
+      unit_value: 20.0,
+      date: Date.today,
+      transaction_category_id: transaction_categories(:daily_transaction).id
+    }
   }
 
   let(:invalid_attributes) {
-    { type: '', unit_value: nil, date: nil }
+    { unit_value: nil, date: nil, transaction_category_id: nil }
   }
 
   let(:valid_session) { {} }
@@ -68,14 +72,13 @@ RSpec.describe IncomesController, type: :controller do
   describe "PUT #update" do
     context "with valid params" do
       let(:new_attributes) {
-        { type: 'monthly', unit_value: 50.0, date: Date.today - 1 }
+        { unit_value: 50.0, date: Date.today - 1 }
       }
 
       it "updates the requested income" do
         income = Income.create! valid_attributes
         put :update, params: { id: income.to_param, income: new_attributes }, session: valid_session
         income.reload
-        expect(income.type).to eq('monthly')
         expect(income.unit_value).to eq(50.0)
         expect(income.date).to eq(Date.today - 1)
       end

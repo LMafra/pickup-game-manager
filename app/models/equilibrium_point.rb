@@ -12,7 +12,9 @@ class EquilibriumPoint < ApplicationRecord
 
   def self.income_value(types)
     return 0 if types.empty?
-    Income.where(type: types).map { |income| income.unit_value }.sum
+    Income.joins(:transaction_category)
+          .where(transaction_categories: { name: types })
+          .map { |income| income.unit_value }.sum
   end
 
   def self.expenses_value(types)
