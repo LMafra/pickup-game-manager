@@ -8,13 +8,6 @@ class PaymentsController < ApplicationController
   def show
   end
 
-  def new
-    @payment = Payment.new
-  end
-
-  def edit
-  end
-
   def create
     @payment = Payment.new(payment_params)
 
@@ -56,6 +49,6 @@ class PaymentsController < ApplicationController
     end
 
     def payment_params
-      params.require(:payment).permit(:date, :status, :athlete_id, :match_id, :description, :amount)
+      params.require(:payment).permit(:date, :status, :athlete_id, :match_id, :transaction_category_id, :description, :amount)
     end
 end

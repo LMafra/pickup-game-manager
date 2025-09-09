@@ -1,19 +1,19 @@
 john_doe:
   name: John Doe
   phone: 1234567890
-  date_of_birth: 1990-05-15
+  date_of_birth: "1990-05-15"
 
 jane_smith:
   name: Jane Smith
   phone: 9876543210
-  date_of_birth: 1992-08-22
+  date_of_birth: "1992-08-22"
 
 mike_johnson:
   name: Mike Johnson
   phone: 5551234567
-  date_of_birth: 1988-12-10
+  date_of_birth: "1988-12-10"
 
 sarah_wilson:
   name: Sarah Wilson
   phone: 7778889999
-  date_of_birth: 1995-03-18
+  date_of_birth: "1995-03-18"

@@ -1,0 +1,7 @@
+daily_transaction:
+  name: daily
+  description: Daily game participation income
+
+monthly_transaction:
+  name: monthly
+  description: Monthly subscription income

@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe EquilibriumPoint, type: :model do
-  fixtures :incomes, :expenses
+  fixtures :incomes, :expenses, :transaction_categories
 
   describe '.calculate_equilibrium_point' do
     context 'with single income type' do

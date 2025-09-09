@@ -8,3 +8,20 @@
  *
  * Consider organizing styles into separate files for maintainability.
  */
+
+/* Import dashboard styles */
+@import "dashboard.css";
+
+/* Basic app styling */
+.app-container {
+  min-height: 100vh;
+  background: #f7fafc;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: #f7fafc;
+  color: #2d3748;
+  line-height: 1.6;
+}

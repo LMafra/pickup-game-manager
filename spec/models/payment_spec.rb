@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Payment, type: :model do
-  fixtures :payments, :athletes, :matches
+  fixtures :payments, :athletes, :matches, :transaction_categories
 
   describe 'associations' do
     it 'belongs to an athlete' do
@@ -73,11 +73,11 @@ RSpec.describe Payment, type: :model do
     end
 
     it 'stores description as string' do
-      expect(payment.description).to eq('Second week game payment')
+      expect(payment.description).to eq('Monthly subscription payment')
     end
 
     it 'stores amount as float' do
-      expect(payment.amount).to eq(15.0)
+      expect(payment.amount).to eq(35.0)
     end
   end
 
@@ -85,12 +85,14 @@ RSpec.describe Payment, type: :model do
     it 'can create a new payment' do
       athlete = athletes(:john_doe)
       match = matches(:weekend_game)
+      transaction_category = transaction_categories(:daily_transaction)
 
       payment = Payment.new(
         date: Date.today,
         status: 'pending',
         athlete: athlete,
         match: match,
+        transaction_category: transaction_category,
         description: 'New payment',
         amount: 20.0
       )

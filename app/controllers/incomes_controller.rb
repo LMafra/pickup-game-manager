@@ -8,13 +8,6 @@ class IncomesController < ApplicationController
   def show
   end
 
-  def new
-    @income = Income.new
-  end
-
-  def edit
-  end
-
   def create
     @income = Income.new(income_params)
 
@@ -56,6 +49,6 @@ class IncomesController < ApplicationController
     end
 
     def income_params
-      params.require(:income).permit(:type, :unit_value, :date)
+      params.require(:income).permit(:unit_value, :date, :transaction_category_id)
     end
 end

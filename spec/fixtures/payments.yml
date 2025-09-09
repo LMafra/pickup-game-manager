@@ -1,31 +1,35 @@
 weekend_payment:
-  date: 2025-08-30
+  date: "2025-08-30"
   status: paid
   athlete: john_doe
   match: weekend_game
   description: First week game payment
   amount: 15.0
+  transaction_category: daily_transaction
 
 indoor_payment:
-  date: 2025-09-05
+  date: "2025-09-05"
   status: paid
   athlete: jane_smith
   match: indoor_match
-  description: Second week game payment
-  amount: 15.0
+  description: Monthly subscription payment
+  amount: 35.0
+  transaction_category: monthly_transaction
 
 beach_payment:
-  date: 2025-09-12
+  date: "2025-09-12"
   status: pending
   athlete: mike_johnson
   match: beach_game
   description: Third week game payment
   amount: 15.0
+  transaction_category: daily_transaction
 
 night_payment:
-  date: 2025-09-18
+  date: "2025-09-18"
   status: paid
   athlete: sarah_wilson
   match: night_match
   description: Fourth week game payment
   amount: 15.0
+  transaction_category: daily_transaction

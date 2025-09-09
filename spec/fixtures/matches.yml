@@ -1,15 +1,15 @@
 weekend_game:
-  date: 2025-08-30
+  date: "2025-08-30"
   location: COPM
 
 indoor_match:
-  date: 2025-09-05
+  date: "2025-09-05"
   location: COPM
 
 beach_game:
-  date: 2025-09-12
+  date: "2025-09-12"
   location: COPM
 
 night_match:
-  date: 2025-09-18
+  date: "2025-09-18"
   location: COPM
