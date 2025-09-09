@@ -8,13 +8,6 @@ class ExpensesController < ApplicationController
   def show
   end
 
-  def new
-    @expense = Expense.new
-  end
-
-  def edit
-  end
-
   def create
     @expense = Expense.new(expense_params)
 

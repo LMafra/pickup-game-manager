@@ -1,0 +1,1261 @@
+/* Dashboard Styles */
+.dashboard {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.dashboard-header {
+  text-align: center;
+  margin-bottom: 40px;
+  padding: 30px 0;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border-radius: 16px;
+  margin: -20px -20px 40px -20px;
+}
+
+.dashboard-header h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin: 0 0 10px 0;
+}
+
+.dashboard-subtitle {
+  font-size: 1.1rem;
+  opacity: 0.9;
+  margin: 0;
+}
+
+/* Section Headers */
+section h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 0 0 20px 0;
+  color: #2d3748;
+  border-bottom: 2px solid #e2e8f0;
+  padding-bottom: 10px;
+}
+
+/* Stats Grid */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  margin-bottom: 40px;
+}
+
+.stat-card {
+  background: white;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  border: 1px solid #e2e8f0;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.stat-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.stat-icon {
+  font-size: 2rem;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  background: #f7fafc;
+}
+
+.stat-content h3 {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #718096;
+  margin: 0 0 8px 0;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.stat-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0;
+  color: #2d3748;
+}
+
+.stat-value.positive {
+  color: #38a169;
+}
+
+.stat-value.negative {
+  color: #e53e3e;
+}
+
+/* Financial Overview Specific Styles */
+.stat-card.income .stat-icon {
+  background: #c6f6d5;
+  color: #38a169;
+}
+
+.stat-card.expenses .stat-icon {
+  background: #fed7d7;
+  color: #e53e3e;
+}
+
+.stat-card.profit .stat-icon {
+  background: #bee3f8;
+  color: #3182ce;
+}
+
+  .stat-card.current-month .stat-icon {
+    background: #fef5e7;
+    color: #d69e2e;
+  }
+
+  .stat-card.yearly-profit .stat-icon {
+    background: #e6fffa;
+    color: #319795;
+  }
+
+/* Quick Actions */
+.quick-actions {
+  margin-bottom: 40px;
+}
+
+.action-buttons {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+}
+
+.action-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 16px 24px;
+  border-radius: 12px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.action-btn.primary {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+.action-btn.primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+}
+
+.action-btn.secondary {
+  background: white;
+  color: #4a5568;
+  border: 2px solid #e2e8f0;
+}
+
+.action-btn.secondary:hover {
+  background: #f7fafc;
+  border-color: #cbd5e0;
+  transform: translateY(-2px);
+}
+
+.btn-icon {
+  font-size: 1.2rem;
+}
+
+/* Recent Activity */
+.activity-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 24px;
+  margin-bottom: 40px;
+}
+
+.activity-card {
+  background: white;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  border: 1px solid #e2e8f0;
+}
+
+.activity-card h3 {
+  margin: 0 0 20px 0;
+  color: #2d3748;
+  font-size: 1.25rem;
+}
+
+.activity-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.activity-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 16px;
+  background: #f7fafc;
+  border-radius: 8px;
+  transition: background-color 0.2s ease;
+}
+
+.activity-item:hover {
+  background: #edf2f7;
+}
+
+.activity-icon {
+  font-size: 1.2rem;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+
+.activity-content {
+  flex: 1;
+}
+
+.activity-title {
+  font-weight: 600;
+  margin: 0 0 4px 0;
+  color: #2d3748;
+}
+
+.activity-details {
+  font-size: 0.875rem;
+  color: #718096;
+  margin: 0 0 8px 0;
+}
+
+.status-badge {
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.status-badge.paid {
+  background: #c6f6d5;
+  color: #22543d;
+}
+
+.status-badge.pending {
+  background: #fef5e7;
+  color: #744210;
+}
+
+.no-activity {
+  text-align: center;
+  color: #a0aec0;
+  font-style: italic;
+  padding: 20px;
+}
+
+/* Upcoming Matches */
+.matches-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.match-card {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  border: 1px solid #e2e8f0;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  transition: all 0.3s ease;
+}
+
+.match-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.match-date {
+  text-align: center;
+  min-width: 60px;
+}
+
+.date-day {
+  display: block;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #667eea;
+  line-height: 1;
+}
+
+.date-month {
+  display: block;
+  font-size: 0.875rem;
+  color: #718096;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.match-details {
+  flex: 1;
+}
+
+.match-details h3 {
+  margin: 0 0 8px 0;
+  color: #2d3748;
+  font-size: 1.125rem;
+}
+
+.match-time {
+  margin: 0 0 4px 0;
+  color: #718096;
+  font-size: 0.875rem;
+}
+
+.athletes-count {
+  margin: 0;
+  color: #a0aec0;
+  font-size: 0.875rem;
+}
+
+.match-actions {
+  flex-shrink: 0;
+}
+
+.btn-small {
+  display: inline-block;
+  padding: 8px 16px;
+  background: #667eea;
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+  .btn-small:hover {
+    background: #5a67d8;
+    transform: translateY(-1px);
+  }
+
+  .no-matches {
+    text-align: center;
+    color: #a0aec0;
+    font-style: italic;
+    padding: 40px;
+    background: white;
+    border-radius: 12px;
+    border: 2px dashed #e2e8f0;
+  }
+
+  /* Equilibrium Analysis */
+  .equilibrium-analysis {
+    margin-bottom: 40px;
+  }
+
+  .equilibrium-card {
+    background: white;
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    border: 1px solid #e2e8f0;
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+  }
+
+  .equilibrium-icon {
+    font-size: 2.5rem;
+    width: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border-radius: 16px;
+    flex-shrink: 0;
+  }
+
+  .equilibrium-content {
+    flex: 1;
+  }
+
+  .equilibrium-content h3 {
+    margin: 0 0 12px 0;
+    color: #2d3748;
+    font-size: 1.25rem;
+  }
+
+  .equilibrium-description {
+    color: #718096;
+    margin: 0 0 20px 0;
+    line-height: 1.6;
+  }
+
+  .equilibrium-details {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+  }
+
+  .equilibrium-item {
+    background: #f7fafc;
+    padding: 12px 16px;
+    border-radius: 8px;
+    border-left: 4px solid #667eea;
+  }
+
+  .equilibrium-label {
+    display: block;
+    font-weight: 600;
+    color: #4a5568;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 4px;
+  }
+
+  .equilibrium-value {
+    display: block;
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: #2d3748;
+  }
+
+  .equilibrium-result {
+    background: #f7fafc;
+    padding: 16px;
+    border-radius: 8px;
+    border-left: 4px solid #667eea;
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #2d3748;
+    margin: 0;
+  }
+
+  .equilibrium-explanation {
+    margin: 12px 0 0 0;
+    color: #718096;
+    font-size: 0.875rem;
+    line-height: 1.5;
+  }
+
+  /* Equilibrium Calculator Form */
+  .equilibrium-calculator {
+    background: white;
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    border: 1px solid #e2e8f0;
+    margin-bottom: 24px;
+  }
+
+  .equilibrium-calculator h3 {
+    margin: 0 0 12px 0;
+    color: #2d3748;
+    font-size: 1.25rem;
+  }
+
+  .calculator-description {
+    color: #718096;
+    margin: 0 0 24px 0;
+    line-height: 1.6;
+  }
+
+  .equilibrium-form {
+    width: 100%;
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    margin-bottom: 24px;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .form-group label {
+    font-weight: 600;
+    color: #4a5568;
+    margin-bottom: 12px;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .checkbox-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .checkbox-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    padding: 8px 12px;
+    border-radius: 6px;
+    transition: background-color 0.2s ease;
+  }
+
+  .checkbox-item:hover {
+    background: #f7fafc;
+  }
+
+  .checkbox-input {
+    width: 16px;
+    height: 16px;
+    accent-color: #667eea;
+  }
+
+  .checkbox-label {
+    font-weight: 500;
+    color: #2d3748;
+    font-size: 0.875rem;
+  }
+
+  .form-actions {
+    display: flex;
+    gap: 12px;
+    justify-content: flex-start;
+  }
+
+  .btn-primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.3s ease;
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+  }
+
+  .btn-secondary {
+    background: white;
+    color: #4a5568;
+    border: 2px solid #e2e8f0;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.3s ease;
+  }
+
+  .btn-secondary:hover {
+    background: #f7fafc;
+    border-color: #cbd5e0;
+    transform: translateY(-2px);
+  }
+
+  /* Equilibrium Information Section */
+  .equilibrium-info {
+    background: #f7fafc;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 24px;
+    border-left: 4px solid #667eea;
+  }
+
+  .equilibrium-info h4 {
+    margin: 0 0 12px 0;
+    color: #2d3748;
+    font-size: 1.125rem;
+  }
+
+  .equilibrium-info p {
+    margin: 0 0 16px 0;
+    color: #4a5568;
+    line-height: 1.6;
+  }
+
+  .info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  .info-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 16px;
+    background: white;
+    border-radius: 8px;
+    border: 1px solid #e2e8f0;
+  }
+
+  .info-icon {
+    font-size: 1.5rem;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f7fafc;
+    border-radius: 8px;
+    flex-shrink: 0;
+  }
+
+  .info-content h5 {
+    margin: 0 0 8px 0;
+    color: #2d3748;
+    font-size: 1rem;
+    font-weight: 600;
+  }
+
+  .info-content p {
+    margin: 0;
+    color: #718096;
+    font-size: 0.875rem;
+    line-height: 1.5;
+  }
+
+  /* Result Interpretation */
+  .result-section {
+    width: 100%;
+  }
+
+  .result-interpretation {
+    margin-top: 20px;
+    padding: 20px;
+    background: #f7fafc;
+    border-radius: 8px;
+    border: 1px solid #e2e8f0;
+  }
+
+  .result-interpretation h4 {
+    margin: 0 0 16px 0;
+    color: #2d3748;
+    font-size: 1.125rem;
+  }
+
+  .interpretation-list {
+    margin: 0 0 20px 0;
+    padding-left: 20px;
+  }
+
+  .interpretation-list li {
+    margin-bottom: 8px;
+    color: #4a5568;
+    line-height: 1.5;
+  }
+
+  .interpretation-list strong {
+    color: #2d3748;
+  }
+
+  .practical-example {
+    padding: 16px;
+    background: white;
+    border-radius: 6px;
+    border-left: 4px solid #38a169;
+  }
+
+  .practical-example h5 {
+    margin: 0 0 8px 0;
+    color: #2d3748;
+    font-size: 1rem;
+  }
+
+  .practical-example p {
+    margin: 0;
+    color: #4a5568;
+    font-size: 0.875rem;
+    line-height: 1.5;
+  }
+
+  /* Financial Summary */
+  .financial-summary {
+    margin: 20px 0;
+    padding: 20px;
+    background: #f7fafc;
+    border-radius: 8px;
+    border: 1px solid #e2e8f0;
+  }
+
+  .financial-summary h4 {
+    margin: 0 0 16px 0;
+    color: #2d3748;
+    font-size: 1.125rem;
+  }
+
+  .summary-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .summary-card {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px;
+    background: white;
+    border-radius: 8px;
+    border: 1px solid #e2e8f0;
+  }
+
+  .summary-card.income {
+    border-left: 4px solid #38a169;
+  }
+
+  .summary-card.expenses {
+    border-left: 4px solid #e53e3e;
+  }
+
+  .summary-icon {
+    font-size: 1.5rem;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f7fafc;
+    border-radius: 8px;
+    flex-shrink: 0;
+  }
+
+  .summary-content h5 {
+    margin: 0 0 4px 0;
+    color: #2d3748;
+    font-size: 0.875rem;
+    font-weight: 600;
+  }
+
+  .summary-amount {
+    margin: 0 0 4px 0;
+    color: #2d3748;
+    font-size: 1.25rem;
+    font-weight: 700;
+  }
+
+  .summary-detail {
+    margin: 0;
+    color: #718096;
+    font-size: 0.75rem;
+  }
+
+  /* Detailed Breakdown */
+  .detailed-breakdown {
+    margin: 20px 0;
+    padding: 20px;
+    background: #f7fafc;
+    border-radius: 8px;
+    border: 1px solid #e2e8f0;
+  }
+
+  .detailed-breakdown h4 {
+    margin: 0 0 16px 0;
+    color: #2d3748;
+    font-size: 1.125rem;
+  }
+
+  .breakdown-section {
+    margin-bottom: 20px;
+  }
+
+  .breakdown-section:last-child {
+    margin-bottom: 0;
+  }
+
+  .breakdown-section h5 {
+    margin: 0 0 12px 0;
+    color: #4a5568;
+    font-size: 1rem;
+    font-weight: 600;
+  }
+
+  .breakdown-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .breakdown-item {
+    padding: 16px;
+    background: white;
+    border-radius: 8px;
+    border: 1px solid #e2e8f0;
+  }
+
+  .breakdown-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+
+  .breakdown-type {
+    font-weight: 600;
+    color: #2d3748;
+  }
+
+  .breakdown-count {
+    color: #718096;
+    font-size: 0.875rem;
+  }
+
+  .breakdown-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .breakdown-unit {
+    color: #4a5568;
+    font-size: 0.875rem;
+  }
+
+  .breakdown-total {
+    color: #2d3748;
+    font-weight: 600;
+    font-size: 0.875rem;
+  }
+
+  /* Cost Analysis */
+  .cost-analysis {
+    margin: 20px 0;
+    padding: 20px;
+    background: #fef5e7;
+    border-radius: 8px;
+    border: 1px solid #f6e05e;
+    border-left: 4px solid #d69e2e;
+  }
+
+  .cost-analysis h4 {
+    margin: 0 0 16px 0;
+    color: #2d3748;
+    font-size: 1.125rem;
+  }
+
+  .cost-calculation {
+    text-align: center;
+  }
+
+  .cost-calculation p {
+    margin: 0 0 8px 0;
+    color: #4a5568;
+  }
+
+  .cost-amount {
+    font-size: 1.5rem !important;
+    font-weight: 700 !important;
+    color: #d69e2e !important;
+    margin: 8px 0 !important;
+  }
+
+  .cost-explanation {
+    font-size: 0.875rem !important;
+    color: #744210 !important;
+    font-style: italic;
+  }
+
+  /* Debtors Overview */
+  .debtors-overview {
+    margin-bottom: 40px;
+  }
+
+  .debtors-summary {
+    background: white;
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    border: 1px solid #e2e8f0;
+    margin-bottom: 24px;
+  }
+
+  .debtors-stats {
+    display: flex;
+    justify-content: center;
+  }
+
+  .debtor-stat {
+    text-align: center;
+  }
+
+  .stat-number {
+    display: block;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #e53e3e;
+    line-height: 1;
+  }
+
+  .stat-label {
+    display: block;
+    color: #718096;
+    font-size: 0.875rem;
+    margin-top: 8px;
+  }
+
+  .debtors-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .debtor-item {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    border: 1px solid #e2e8f0;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    transition: all 0.3s ease;
+  }
+
+  .debtor-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  }
+
+  .debtor-icon {
+    font-size: 1.5rem;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fed7d7;
+    color: #e53e3e;
+    border-radius: 10px;
+    flex-shrink: 0;
+  }
+
+  .debtor-content {
+    flex: 1;
+  }
+
+  .debtor-content h4 {
+    margin: 0 0 8px 0;
+    color: #2d3748;
+    font-size: 1.125rem;
+  }
+
+  .debtor-details {
+    margin: 0 0 8px 0;
+    color: #718096;
+    font-size: 0.875rem;
+  }
+
+  .debtor-matches {
+    margin: 0;
+    color: #a0aec0;
+    font-size: 0.875rem;
+  }
+
+  .debtor-actions {
+    flex-shrink: 0;
+  }
+
+  .debtors-more {
+    text-align: center;
+    margin-top: 20px;
+    padding: 20px;
+    background: white;
+    border-radius: 12px;
+    border: 2px dashed #e2e8f0;
+  }
+
+  .debtors-more p {
+    margin: 0 0 16px 0;
+    color: #a0aec0;
+  }
+
+  .btn-small.secondary {
+    background: white;
+    color: #4a5568;
+    border: 2px solid #e2e8f0;
+  }
+
+  .btn-small.secondary:hover {
+    background: #f7fafc;
+    border-color: #cbd5e0;
+  }
+
+  /* Cash Flow Chart */
+  .cash-flow-chart {
+    margin-bottom: 40px;
+  }
+
+  .chart-container {
+    background: white;
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    border: 1px solid #e2e8f0;
+  }
+
+  .chart-tabs {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 24px;
+    border-bottom: 2px solid #e2e8f0;
+  }
+
+  .chart-tab {
+    background: none;
+    border: none;
+    padding: 12px 20px;
+    cursor: pointer;
+    font-weight: 500;
+    color: #718096;
+    border-bottom: 2px solid transparent;
+    transition: all 0.3s ease;
+  }
+
+  .chart-tab.active {
+    color: #667eea;
+    border-bottom-color: #667eea;
+  }
+
+  .chart-tab:hover {
+    color: #4a5568;
+  }
+
+  .chart-content {
+    position: relative;
+  }
+
+  .chart-period {
+    display: none;
+  }
+
+  .chart-period.active {
+    display: block;
+  }
+
+  .chart-bars {
+    display: flex;
+    gap: 40px;
+    justify-content: center;
+    align-items: flex-end;
+    margin-bottom: 24px;
+    min-height: 200px;
+  }
+
+  .chart-bar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    flex: 1;
+    max-width: 120px;
+  }
+
+  .bar-label {
+    font-weight: 600;
+    color: #4a5568;
+    text-align: center;
+    font-size: 0.875rem;
+  }
+
+  .bar-container {
+    width: 60px;
+    height: 200px;
+    background: #f7fafc;
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+    border: 1px solid #e2e8f0;
+  }
+
+  .bar-fill {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    transition: height 0.5s ease;
+  }
+
+  .income-bar .bar-fill {
+    background: linear-gradient(to top, #38a169, #48bb78);
+  }
+
+  .expense-bar .bar-fill {
+    background: linear-gradient(to top, #e53e3e, #f56565);
+  }
+
+  .bar-value {
+    font-weight: 700;
+    color: #2d3748;
+    font-size: 1rem;
+    text-align: center;
+  }
+
+  .chart-summary {
+    text-align: center;
+    padding: 20px;
+    background: #f7fafc;
+    border-radius: 8px;
+    border: 1px solid #e2e8f0;
+  }
+
+  .summary-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .summary-label {
+    font-weight: 600;
+    color: #4a5568;
+  }
+
+  .summary-value {
+    font-weight: 700;
+    font-size: 1.125rem;
+  }
+
+  .summary-value.positive {
+    color: #38a169;
+  }
+
+  .summary-value.negative {
+    color: #e53e3e;
+  }
+
+/* Responsive Design */
+  @media (max-width: 768px) {
+    .dashboard {
+      padding: 16px;
+    }
+
+    .dashboard-header {
+      margin: -16px -16px 32px -16px;
+      padding: 24px 16px;
+    }
+
+    .dashboard-header h1 {
+      font-size: 2rem;
+    }
+
+    .stats-grid {
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+
+    .action-buttons {
+      grid-template-columns: 1fr;
+    }
+
+    .activity-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .matches-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .match-card {
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .match-actions {
+      width: 100%;
+    }
+
+    .btn-small {
+      display: block;
+      width: 100%;
+      text-align: center;
+    }
+
+    .form-row {
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+
+    .form-actions {
+      flex-direction: column;
+    }
+
+    .btn-primary,
+    .btn-secondary {
+      width: 100%;
+      text-align: center;
+    }
+
+    .info-grid {
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+
+    .info-item {
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .info-icon {
+      align-self: center;
+    }
+
+    .summary-grid {
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+
+    .breakdown-details {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 8px;
+    }
+  }
+
+@media (max-width: 480px) {
+  .stat-card {
+    flex-direction: column;
+    text-align: center;
+    gap: 12px;
+  }
+
+  .stat-icon {
+    width: 50px;
+    height: 50px;
+    font-size: 1.5rem;
+  }
+}

@@ -8,13 +8,6 @@ class IncomesController < ApplicationController
   def show
   end
 
-  def new
-    @income = Income.new
-  end
-
-  def edit
-  end
-
   def create
     @income = Income.new(income_params)
 
